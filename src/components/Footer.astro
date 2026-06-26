@@ -1,0 +1,9 @@
+---
+import { portfolio, type Lang } from '../data/portfolio';
+interface Props { lang?: Lang; }
+const lang = Astro.props.lang ?? 'es';
+const { person, ui } = portfolio[lang];
+---
+<footer class="border-t border-white/8 py-8">
+  <div class="shell flex flex-col gap-4 text-xs text-slate-600 sm:flex-row sm:items-center sm:justify-between"><p>© {new Date().getFullYear()} {person.fullName}</p><p class="font-mono">{ui.footerStack}</p><a href="#inicio" class="transition hover:text-electric">{ui.backTop}</a></div>
+</footer>

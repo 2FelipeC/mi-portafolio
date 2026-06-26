@@ -1,0 +1,23 @@
+{
+  "name": "mi-portafolio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "generate:cv": "tsx scripts/generate-cv.ts",
+    "prebuild": "npm run generate:cv",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "latest",
+    "astro": "latest",
+    "tailwindcss": "latest"
+  },
+  "devDependencies": {
+    "pdfkit": "^0.19.1",
+    "tsx": "^4.22.4"
+  }
+}

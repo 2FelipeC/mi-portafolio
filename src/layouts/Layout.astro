@@ -1,0 +1,40 @@
+---
+import '../styles/global.css';
+import type { Lang } from '../data/portfolio';
+interface Props { title: string; description: string; lang?: Lang; alternateHref?: string; }
+const { title, description, lang = 'es', alternateHref } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
+const alternateLang = lang === 'es' ? 'en' : 'es';
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script is:inline>
+      (() => {
+        try {
+          const theme = localStorage.getItem('theme');
+          if (theme === 'light' || theme === 'dark') {
+            document.documentElement.dataset.theme = theme;
+          }
+        } catch {}
+      })();
+    </script>
+    <meta name="description" content={description} />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#070506" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff7f5" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <link rel="canonical" href={canonicalURL} />
+    {alternateHref && <link rel="alternate" hreflang={alternateLang} href={alternateHref} />}
+    <link rel="icon" type="image/x-icon" href={`${basePath}/LOGO-2FC.ico`} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

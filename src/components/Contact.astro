@@ -1,0 +1,20 @@
+---
+import { portfolio, type Lang } from '../data/portfolio';
+interface Props { lang?: Lang; }
+const lang = Astro.props.lang ?? 'es';
+const { person, ui } = portfolio[lang];
+const emailHref = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(person.email)}&su=${encodeURIComponent(ui.emailSubject)}`;
+---
+<section id="contacto" class="section relative overflow-hidden">
+  <div class="absolute inset-x-0 bottom-0 mx-auto h-72 max-w-3xl rounded-full bg-electric/8 blur-[120px]"></div>
+  <div class="shell relative text-center">
+    <p class="eyebrow">{ui.sections.contactEyebrow}</p><h2 class="mx-auto mt-5 max-w-3xl text-[clamp(2.4rem,7vw,5.2rem)] font-semibold leading-[1.02] tracking-[-.055em]">{ui.sections.contactTitle} <span class="gradient-text">{ui.sections.contactHighlight}</span></h2>
+    <p class="mx-auto mt-6 max-w-xl text-base leading-8 text-slate-400">{ui.sections.contactText}</p>
+    <a href={emailHref} target="_blank" rel="noreferrer" class="focus-ring mt-9 inline-flex rounded-full bg-electric px-7 py-3.5 text-sm font-bold text-ink transition hover:bg-white">{person.email} ↗</a>
+    <div class="mt-10 flex justify-center gap-6 text-sm">
+      <a class="focus-ring rounded text-slate-400 transition hover:text-white" href={person.github} target="_blank" rel="noreferrer">GitHub ↗</a>
+      <a class="focus-ring rounded text-slate-400 transition hover:text-white" href={person.linkedin} target="_blank" rel="noreferrer">{ui.linkedInLabel} ↗</a>
+    </div>
+    <p class="mt-8 font-mono text-[.68rem] uppercase tracking-widest text-slate-600">{person.location}</p>
+  </div>
+</section>

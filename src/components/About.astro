@@ -1,0 +1,23 @@
+---
+import { portfolio, type Lang } from '../data/portfolio';
+interface Props { lang?: Lang; }
+const lang = Astro.props.lang ?? 'es';
+const content = portfolio[lang];
+const { ui } = content;
+const profileParagraphs = content.profile.split('\n\n');
+---
+<section id="perfil" class="section border-y border-white/[.055] bg-white/[.015]">
+  <div class="shell">
+    <div class="grid gap-12 lg:grid-cols-[.7fr_1.3fr] lg:gap-20">
+      <div><p class="eyebrow">{ui.sections.aboutEyebrow}</p><h2 class="section-title">{ui.sections.aboutTitle} <span class="text-electric">{ui.sections.aboutHighlight}</span></h2></div>
+      <div>
+        <div class="space-y-5">
+          {profileParagraphs.map((paragraph) => <p class="text-lg leading-8 text-slate-300">{paragraph}</p>)}
+        </div>
+      </div>
+    </div>
+    <div class="mt-16 grid grid-cols-2 overflow-hidden rounded-2xl border border-white/10 md:grid-cols-4">
+      {content.stats.map((stat) => <div class="border-b border-r border-white/10 p-5 last:border-r-0 sm:p-7 md:border-b-0"><strong class="block text-2xl font-semibold text-white">{stat.value}</strong><span class="mt-1 block font-mono text-[.68rem] uppercase tracking-wider text-slate-500">{stat.label}</span></div>)}
+    </div>
+  </div>
+</section>

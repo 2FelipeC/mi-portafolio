@@ -1,0 +1,56 @@
+---
+import { portfolio, type Lang } from '../data/portfolio';
+interface Props { lang?: Lang; }
+const lang = Astro.props.lang ?? 'es';
+const { person, ui } = portfolio[lang];
+const basePath = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const cvHref = `${basePath}cv/cv-steban-felipe-cuasquer.pdf`;
+const cvAriaLabel = lang === 'en' ? 'Download Steban Felipe professional CV as PDF' : 'Descargar CV profesional de Steban Felipe en PDF';
+---
+<section id="inicio" class="relative flex min-h-screen items-center overflow-hidden pb-20 pt-32">
+  <div class="pointer-events-none absolute left-[8%] top-36 size-72 rounded-full bg-electric/8 blur-[100px]"></div>
+  <div class="shell grid items-center gap-16 lg:grid-cols-[1.18fr_.82fr]">
+    <div>
+      <p class="eyebrow flex items-center gap-3"><span class="inline-block size-2 rounded-full bg-electric shadow-[0_0_16px_#ff3434]"></span>{ui.available}</p>
+      <h1 class="mt-7 text-[clamp(3.2rem,10vw,6.6rem)] font-semibold leading-[.9] tracking-[-.07em]">
+        Steban<br /><span class="gradient-text">Felipe.</span>
+      </h1>
+      <p class="mt-7 max-w-2xl font-mono text-xs leading-6 text-electric sm:text-sm">{person.role}</p>
+      <p class="mt-6 max-w-xl text-lg leading-8 text-slate-300">{person.shortPitch}</p>
+      <div class="mt-9 flex flex-wrap gap-3">
+        <a href="#proyectos" class="focus-ring rounded-full bg-white px-6 py-3 text-sm font-bold text-ink transition hover:bg-electric">{ui.viewProjects} <span aria-hidden="true">↘</span></a>
+        <a href={cvHref} download aria-label={cvAriaLabel} class="focus-ring rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-white transition hover:border-electric/40 hover:bg-electric/7">{ui.downloadCv}</a>
+        <a href="#contacto" class="focus-ring rounded-full px-5 py-3 text-sm font-semibold text-slate-400 transition hover:text-white">{ui.contact}</a>
+      </div>
+    </div>
+    <div class="relative mx-auto w-full max-w-md lg:ml-auto">
+      <div class="glass relative overflow-hidden rounded-[2rem] p-5 sm:p-7">
+        <div class="mb-8 flex items-center justify-between border-b border-white/10 pb-4 font-mono text-[.66rem] uppercase tracking-[.16em] text-slate-500">
+          <span>{ui.workspace}</span><span class="text-mint">{ui.deployed}</span>
+        </div>
+        <div class="relative aspect-square rounded-2xl border border-white/8 bg-panel p-5">
+          <div class="absolute inset-0 opacity-25 [background-image:linear-gradient(var(--theme-grid)_1px,transparent_1px),linear-gradient(90deg,var(--theme-grid)_1px,transparent_1px)] [background-size:28px_28px]"></div>
+          <div class="relative flex h-full flex-col justify-between">
+            <div class="flex justify-between font-mono text-[.64rem] text-slate-500"><span>APP_CORE.TS</span><span>main</span></div>
+            <div class="space-y-3 font-mono text-[.7rem] leading-5">
+              <p><span class="text-violet">const</span> product = <span class="text-electric">await</span> build({`{`}</p>
+              <p class="pl-5 text-slate-400">frontend: <span class="text-mint">'responsive'</span>,</p>
+              <p class="pl-5 text-slate-400">backend: <span class="text-mint">'python'</span>,</p>
+              <p class="pl-5 text-slate-400">data: <span class="text-mint">'intelligent'</span>,</p>
+              <p class="pl-5 text-slate-400">delivery: <span class="text-mint">'reliable'</span></p>
+              <p>{`}`});</p>
+            </div>
+            <div>
+              <p class="font-mono text-[.65rem] uppercase tracking-widest text-slate-500">{ui.focusLabel}</p>
+              <p class="mt-2 text-2xl font-semibold">{ui.focusText}</p>
+            </div>
+          </div>
+        </div>
+        <div class="mt-5 grid grid-cols-2 gap-2 sm:grid-cols-3">
+          {['Full-Stack', 'Python', 'TypeScript', 'Web apps', 'Data & AI'].map((tag, i) => <span class:list={["rounded-lg border px-3 py-2 font-mono text-[.64rem]", i === 0 ? 'border-electric/25 bg-electric/8 text-electric' : 'border-white/8 bg-white/[.025] text-slate-400']}>{tag}</span>)}
+        </div>
+      </div>
+      <div class="absolute -bottom-5 -left-5 hidden rounded-xl border border-violet/25 bg-panel/90 px-4 py-3 font-mono text-[.65rem] text-violet shadow-xl sm:block">{ui.ideaLabel}</div>
+    </div>
+  </div>
+</section>
