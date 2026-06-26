@@ -58,7 +58,7 @@ Para actualizar el contenido del CV, edita `src/data/portfolio.ts` y vuelve a ej
 2. Vincula este proyecto local con el repositorio remoto.
 3. En GitHub, abre **Settings → Pages** y selecciona **GitHub Actions** como fuente.
 4. Sube la rama `main`. El workflow `.github/workflows/deploy.yml` construirá y publicará el sitio.
-5. La URL prevista es `https://felipe4992.github.io/mi-portafolio/`.
+5. La URL prevista es `https://2felipec.github.io/mi-portafolio/`.
 
 ## Contenido editable
 
