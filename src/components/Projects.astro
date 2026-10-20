@@ -2,32 +2,89 @@
 import { portfolio, type Lang } from '../data/portfolio';
 interface Props { lang?: Lang; }
 const lang = Astro.props.lang ?? 'es';
-const content = portfolio[lang];
-const { ui } = content;
-const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
+const { projects } = portfolio[lang];
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
-<section id="proyectos" class="section">
+<section id="proyectos" class="section work-section">
   <div class="shell">
-    <p class="eyebrow">{ui.sections.projectsEyebrow}</p><h2 class="section-title">{ui.sections.projectsTitle}</h2>
-    <div class="mt-12 space-y-5">
-      {content.projects.map((project, index) => <article class="glass card-hover grid overflow-hidden rounded-3xl lg:grid-cols-[.8fr_1.2fr]">
-        <div class="relative min-h-64 overflow-hidden border-b border-white/10 bg-panel p-7 lg:border-b-0 lg:border-r">
-          <div class="absolute inset-0 opacity-25 [background-image:radial-gradient(var(--theme-accent)_1px,transparent_1px)] [background-size:20px_20px]"></div>
-          <div class:list={["absolute rounded-full blur-3xl", index === 1 ? 'right-2 top-8 size-40 bg-violet/25' : 'bottom-6 left-8 size-44 bg-electric/20']}></div>
-          <div class="relative flex h-full flex-col justify-between gap-10">
-            <span class="font-mono text-xs text-slate-500">CASE_{String(index + 1).padStart(2, '0')}</span>
-            <div class="grid min-h-[154px] place-items-center sm:min-h-[179px] lg:min-h-48">
-              <img src={`${basePath}/${project.image.light}`} alt={project.image.alt} class="theme-project-image-light max-h-[154px] w-full max-w-[376px] object-contain sm:max-h-[179px] lg:max-h-[205px]" loading="lazy" decoding="async" />
-              <img src={`${basePath}/${project.image.dark}`} alt="" class="theme-project-image-dark max-h-[154px] w-full max-w-[376px] object-contain sm:max-h-[179px] lg:max-h-[205px]" loading="lazy" decoding="async" />
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">{lang === 'es' ? 'PROYECTOS SELECCIONADOS' : 'SELECTED WORK'}</p>
+        <h2 class="display-title">{lang === 'es' ? 'Del código' : 'From code'}<br /><em>{lang === 'es' ? 'al mundo real.' : 'to the real world.'}</em></h2>
+      </div>
+      <p class="heading-aside">{lang === 'es' ? 'Una selección de aplicaciones, productos web y soluciones de datos con las que he trabajado.' : 'A selection of applications, web products and data solutions I have worked on.'}</p>
+    </div>
+  </div>
+
+  <div class="project-scroll-scene" data-project-scene>
+    <div class="project-scroll-sticky">
+      <div class="project-runway" role="region" aria-label={lang === 'es' ? 'Recorrido de proyectos' : 'Project journey'} data-project-runway>
+        <svg class="project-thread" viewBox="0 0 4000 800" preserveAspectRatio="none" aria-hidden="true"><path d="M-40 610 C260 680 450 115 800 185 S1330 730 1690 510 S2250 60 2610 195 S3140 690 3540 425 S3890 165 4070 260" /></svg>
+        {projects.map((project, i) => <>
+          <article class={`project-story project-story-${i + 1}`} aria-label={project.title}>
+            <div class="project-info">
+              <div class="project-logo-frame"><img class="project-logo" src={base + '/' + project.image.dark.replace('.png', '.webp')} alt={project.image.alt} loading="lazy" /></div>
+              <div class="project-heading">
+                <p class="project-meta">{project.type}</p>
+                <h3 aria-label={project.title}>{project.title.split(' — ').at(-1)}</h3>
+              </div>
+              <div class="project-copy project-copy-desktop">
+                <p>{project.description}</p>
+                <ul class="tags" aria-label={lang === 'es' ? 'Tecnologías' : 'Technologies'}>{project.technologies.map(tech => <li>{tech}</li>)}</ul>
+                <div class="project-story-bottom">
+                  <details class="project-details"><summary>{lang === 'es' ? 'Mi contribución' : 'My contribution'}<span aria-hidden="true">+</span></summary><p>{project.role}</p></details>
+                  {project.links.filter(link => !link.temporary).map(link => <a class="button" href={link.href} target="_blank" rel="noopener noreferrer">{link.label}</a>)}
+                </div>
+              </div>
+              <details class="project-mobile-details">
+                <summary>{lang === 'es' ? 'Ver detalles' : 'View details'}<span aria-hidden="true">+</span></summary>
+                <div class="project-mobile-detail-content">
+                  <p>{project.description}</p>
+                  <ul class="tags" aria-label={lang === 'es' ? 'Tecnologías' : 'Technologies'}>{project.technologies.map(tech => <li>{tech}</li>)}</ul>
+                  <div class="project-story-bottom">
+                    <details class="project-details"><summary>{lang === 'es' ? 'Mi contribución' : 'My contribution'}<span aria-hidden="true">+</span></summary><p>{project.role}</p></details>
+                    {project.links.filter(link => !link.temporary).map(link => <a class="button" href={link.href} target="_blank" rel="noopener noreferrer">{link.label}</a>)}
+                  </div>
+                </div>
+              </details>
             </div>
-            <div><strong class="font-mono text-3xl text-electric">{project.code}</strong><p class="mt-2 font-mono text-[.65rem] uppercase tracking-widest text-slate-500">{project.type}</p></div>
-          </div>
-        </div>
-        <div class="p-7 sm:p-9"><h3 class="text-2xl font-semibold tracking-tight sm:text-3xl">{project.title}</h3><p class="mt-5 text-sm leading-7 text-slate-400">{project.description}</p>{project.role && <p class="mt-4 text-sm leading-7 text-slate-500"><strong class="text-slate-300">{ui.roleLabel}</strong> {project.role}</p>}
-          <div class="mt-6 flex flex-wrap gap-2">{project.technologies.map((tech) => <span class="font-mono text-[.65rem] text-electric/80">#{tech.replaceAll(' ', '_')}</span>)}</div>
-          {project.links.length > 0 && <div class="mt-8 flex gap-5">{project.links.map((link) => link.temporary ? <span class="cursor-not-allowed text-xs text-slate-600" title={ui.pendingTitle}>{link.label} · {ui.pending}</span> : <a href={link.href} class="text-sm text-electric" target="_blank" rel="noreferrer">{link.label} ↗</a>)}</div>}
-        </div>
-      </article>)}
+          </article>
+        </>)}
+      </div>
     </div>
   </div>
 </section>
+
+<script>
+  const scene = document.querySelector<HTMLElement>('[data-project-scene]');
+  const runway = scene?.querySelector<HTMLElement>('[data-project-runway]');
+  if (scene && runway) {
+    const desktop = window.matchMedia('(min-width: 901px) and (min-height: 621px) and (prefers-reduced-motion: no-preference)');
+    let distance = 0;
+    let frame = 0;
+
+    const render = () => {
+      if (!desktop.matches) return;
+      const traveled = Math.min(distance, Math.max(0, -scene.getBoundingClientRect().top));
+      runway.style.transform = `translate3d(${-traveled}px, 0, 0)`;
+    };
+    const requestRender = () => { cancelAnimationFrame(frame); frame = requestAnimationFrame(render); };
+    const measure = () => {
+      if (desktop.matches) {
+        runway.style.transform = '';
+        distance = Math.max(0, runway.scrollWidth - window.innerWidth);
+        scene.style.height = `${distance + window.innerHeight}px`;
+      } else {
+        distance = 0;
+        scene.style.height = '';
+        runway.style.transform = '';
+      }
+      requestRender();
+    };
+
+    window.addEventListener('scroll', requestRender, { passive: true });
+    window.addEventListener('resize', measure);
+    desktop.addEventListener('change', measure);
+    measure();
+  }
+</script>

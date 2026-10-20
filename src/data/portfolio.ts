@@ -1,13 +1,12 @@
 export type Lang = 'es' | 'en';
 export type Link = { label: string; href: string; temporary?: boolean };
 export type Project = { title: string; type: string; description: string; role?: string; technologies: string[]; links: Link[]; code: string; image: { light: string; dark: string; alt: string } };
-export type Experience = { role: string; organization: string; project?: string; location?: string; date: string; description: string };
+export type Experience = { role: string; organization: string; project?: string; date: string; description: string };
 
 const sharedPerson = {
   fullName: 'Steban Felipe Cuasquer Rosero',
   displayName: 'Steban Felipe',
   email: 'felipe4992@gmail.com',
-  location: { es: 'Madrid, España', en: 'Madrid, Spain' },
   github: 'https://github.com/2FelipeC',
   linkedin: 'https://www.linkedin.com/in/steban-felipe-cuasquer-rosero-122b1328a',
   cv: '/mi-portafolio/cv/cv-steban-felipe-cuasquer.pdf',
@@ -17,7 +16,6 @@ export const portfolio = {
   es: {
     person: {
       ...sharedPerson,
-      location: sharedPerson.location.es,
       role: 'Full-Stack Developer | Web Applications | Automation | Data & AI',
       shortPitch: 'Desarrollo aplicaciones web y herramientas digitales que convierten procesos complejos, datos e inteligencia artificial en soluciones útiles, eficientes y escalables.',
       impact: 'Construyo software de extremo a extremo: desde la lógica, los datos y la automatización hasta interfaces web claras, mantenibles y orientadas a usuarios reales.',
@@ -34,8 +32,6 @@ export const portfolio = {
       mobileNavLabel: 'Navegación móvil',
       homeAria: 'Ir al inicio',
       menuAria: 'Abrir menú',
-      themeLight: 'Cambiar a modo claro',
-      themeDark: 'Cambiar a modo oscuro',
       talk: 'Hablemos',
       emailSubject: 'Contacto desde tu portafolio web',
       available: 'Abierto a nuevas oportunidades',
@@ -51,7 +47,7 @@ export const portfolio = {
       pending: 'próximamente',
       pendingTitle: 'Enlace pendiente',
       linkedInLabel: 'LinkedIn',
-      backTop: 'Volver arriba ↑',
+      backTop: 'Volver arriba',
       footerStack: 'FULL-STACK × PYTHON × DATA',
       sections: {
         aboutEyebrow: '01 / Perfil',
@@ -75,7 +71,7 @@ export const portfolio = {
         contactEyebrow: '08 / Contacto',
         contactTitle: 'Construyamos algo',
         contactHighlight: 'con propósito.',
-        contactText: 'Si necesitas construir una aplicación web, automatizar un proceso o convertir datos e inteligencia artificial en un producto útil, hablemos.',
+        contactText: 'Cuéntame qué quieres construir o mejorar. Podemos dar forma a la idea y encontrar el siguiente paso.',
       },
     },
     profile: 'Desarrollador Full-Stack con formación en Ingeniería Mecatrónica y Sistemas Interactivos Inteligentes. Construyo aplicaciones web, APIs y herramientas de automatización que transforman procesos complejos, datos técnicos e inteligencia artificial aplicada en soluciones digitales claras, útiles y escalables.\n\nMi experiencia en proyectos nacionales y europeos de I+D me ha permitido trabajar en entornos tecnológicos exigentes, donde la precisión, la trazabilidad y la toma de decisiones basada en datos son fundamentales. Combino desarrollo de software, análisis de datos, automatización y pensamiento de producto para crear soluciones sostenibles, bien estructuradas y orientadas a usuarios reales.',
@@ -83,13 +79,12 @@ export const portfolio = {
       { value: 'Full-Stack', label: 'Desarrollo web' },
       { value: 'Automation', label: 'Procesos eficientes' },
       { value: 'Data & AI', label: 'Soluciones inteligentes' },
-      { value: 'Madrid', label: 'España' },
     ],
     specialties: [
       { number: '01', title: 'Aplicaciones web full-stack', description: 'Desarrollo soluciones web completas, responsive y orientadas a producto, conectando interfaces claras con lógica de negocio, datos y APIs.', icon: 'WEB' },
       { number: '02', title: 'Backend, APIs y automatización', description: 'Construyo servicios backend, APIs REST y herramientas en Python para integrar sistemas, automatizar procesos y resolver necesidades reales de negocio.', icon: 'API' },
-      { number: '03', title: 'Datos e IA aplicada', description: 'Transformo datos complejos en visualizaciones, modelos y soluciones digitales comprensibles, útiles y accionables.', icon: 'DATA & AI' },
-      { number: '04', title: 'Software técnico y científico', description: 'Desarrollo herramientas, pipelines y plataformas para entornos de investigación, energía e innovación, con foco en trazabilidad, mantenimiento y resultados.', icon: 'R&D' },
+      { number: '03', title: 'Datos e IA aplicada', description: 'Transformo datos complejos en visualizaciones, modelos y soluciones digitales comprensibles, útiles y accionables.', icon: 'DATOS E IA' },
+      { number: '04', title: 'Software técnico y científico', description: 'Desarrollo herramientas, pipelines y plataformas para entornos de investigación, energía e innovación, con foco en trazabilidad, mantenimiento y resultados.', icon: 'I+D' },
     ],
     skills: [
       { category: 'Frontend y experiencia web', items: ['React', 'JavaScript', 'HTML5', 'CSS3', 'Responsive Design', 'Componentes reutilizables', 'Consumo de APIs REST', 'Interfaces orientadas a usuario'] },
@@ -109,12 +104,12 @@ export const portfolio = {
       { role: 'Investigador contratado · Automatización técnica', organization: 'Instituto de Cerámica y Vidrio — CSIC', project: '4AIRCRAFT', date: 'May 2024 — Ago 2024', description: 'Programación e integración de sistemas automatizados para optimizar procesos técnicos de pulverización de electrocatalizadores en un proyecto europeo de tecnologías sostenibles.\n\nApoyo en análisis de resultados, documentación técnica y desarrollo de herramientas para organizar datos, generar reportes y mejorar la reproducibilidad de procesos experimentales.' },
     ] as Experience[],
     formativeExperience: [
-      { role: 'Prácticas de Máster · Python, datos e IA', organization: 'Instituto de Cerámica y Vidrio — ICV-CSIC', location: 'Madrid, España', date: 'Feb 2025 — Mar 2025', description: 'Desarrollo de herramientas en Python para análisis automático de datos electroquímicos de baterías de estado sólido. Procesamiento, limpieza, visualización y análisis estadístico de datos EIS y voltamperometría cíclica con Pandas, Matplotlib y Plotly.' },
-      { role: 'Prácticas de Grado · Software y sistemas críticos', organization: 'TechMedic', location: 'Pasto, Colombia', date: 'Ago 2022 — Oct 2022', description: 'Desarrollo e implementación de software y hardware para sistemas de llamado de enfermería y alerta de código azul en entorno hospitalario. Apoyo en pruebas, validación y aseguramiento del funcionamiento de sistemas críticos orientados a respuesta médica.' },
+      { role: 'Prácticas de Máster · Python, datos e IA', organization: 'Instituto de Cerámica y Vidrio — ICV-CSIC', date: 'Feb 2025 — Mar 2025', description: 'Desarrollo de herramientas en Python para análisis automático de datos electroquímicos de baterías de estado sólido. Procesamiento, limpieza, visualización y análisis estadístico de datos EIS y voltamperometría cíclica con Pandas, Matplotlib y Plotly.' },
+      { role: 'Prácticas de Grado · Software y sistemas críticos', organization: 'TechMedic', date: 'Ago 2022 — Oct 2022', description: 'Desarrollo e implementación de software y hardware para sistemas de llamado de enfermería y alerta de código azul en entorno hospitalario. Apoyo en pruebas, validación y aseguramiento del funcionamiento de sistemas críticos orientados a respuesta médica.' },
     ] as Experience[],
     education: [
-      { degree: 'Máster Universitario en Sistemas Interactivos Inteligentes', institution: 'Universidad Autónoma de Madrid', location: 'Madrid, España', date: 'Octubre 2025', description: 'Análisis de datos, inteligencia artificial, machine learning y desarrollo de sistemas interactivos inteligentes.' },
-      { degree: 'Ingeniería Mecatrónica', institution: 'Universidad Mariana', location: 'Pasto, Colombia', date: 'Agosto 2023', description: 'Automatización, programación, electrónica y desarrollo de sistemas tecnológicos multidisciplinarios.' },
+      { degree: 'Máster Universitario en Sistemas Interactivos Inteligentes', institution: 'Universidad Autónoma de Madrid', date: 'Octubre 2025', description: 'Análisis de datos, inteligencia artificial, machine learning y desarrollo de sistemas interactivos inteligentes.' },
+      { degree: 'Ingeniería Mecatrónica', institution: 'Universidad Mariana', date: 'Agosto 2023', description: 'Automatización, programación, electrónica y desarrollo de sistemas tecnológicos multidisciplinarios.' },
     ],
     publications: [
       { title: 'Real-Time, Interpretable Diagnostics for Solid-State Batteries via Machine Learning on In Situ Impedance Spectra', authors: 'Z. Warren, F. Cuasquer, R. Sanchez, P.A. Apellániz, A. Almodóvar, J. Parras, N.C. Rosero-Navarro', venue: 'Battery Energy, Volume 5, Issue 3', date: 'Mayo 2026', type: 'Artículo científico' },
@@ -126,8 +121,8 @@ export const portfolio = {
       venue: 'Vaultinum Trust Services',
       date: 'Noviembre 2025',
       type: 'Registro de software',
-      description: 'Pipeline para transformar datos experimentales de baterías en conjuntos preparados para análisis, visualización y entrenamiento de modelos de inteligencia artificial.\n\nIntegra procesamiento de datos, automatización de workflows y preparación de modelos predictivos.',
-      role: 'Coautor y desarrollador del pipeline y entrenamiento de modelos.',
+      description: 'Pipeline en Python que procesa datos experimentales de baterías para entrenar modelos de aprendizaje automático.',
+      role: 'Coautor · Desarrollo del pipeline y entrenamiento de modelos.',
       registrationLabel: 'Registro',
       authorsLabel: 'Autores',
       tags: ['Python', 'Data Pipeline', 'Machine Learning', 'Automation', 'Battery Analysis'],
@@ -136,7 +131,6 @@ export const portfolio = {
   en: {
     person: {
       ...sharedPerson,
-      location: sharedPerson.location.en,
       role: 'Full-Stack Developer | Web Applications | Automation | Data & AI',
       shortPitch: 'I build web applications and digital tools that turn complex processes, data and artificial intelligence into useful, efficient and scalable solutions.',
       impact: 'I build end-to-end software: from logic, data and automation to clear, maintainable web interfaces designed for real users.',
@@ -153,8 +147,6 @@ export const portfolio = {
       mobileNavLabel: 'Mobile navigation',
       homeAria: 'Go to home',
       menuAria: 'Open menu',
-      themeLight: 'Switch to light mode',
-      themeDark: 'Switch to dark mode',
       talk: 'Let’s talk',
       emailSubject: 'Contact from your portfolio website',
       available: 'Open to new opportunities',
@@ -170,7 +162,7 @@ export const portfolio = {
       pending: 'coming soon',
       pendingTitle: 'Link pending',
       linkedInLabel: 'LinkedIn',
-      backTop: 'Back to top ↑',
+      backTop: 'Back to top',
       footerStack: 'FULL-STACK × PYTHON × DATA',
       sections: {
         aboutEyebrow: '01 / Profile',
@@ -194,7 +186,7 @@ export const portfolio = {
         contactEyebrow: '08 / Contact',
         contactTitle: 'Let’s build something',
         contactHighlight: 'purposeful.',
-        contactText: 'If you need to build a web application, automate a process, or turn data and artificial intelligence into a useful product, let’s talk.',
+        contactText: 'Tell me what you want to build or improve. We can shape the idea and find the next step.',
       },
     },
     profile: 'Full-Stack Developer with a background in Mechatronics Engineering and Intelligent Interactive Systems. I build web applications, APIs and automation tools that transform complex processes, technical data and applied artificial intelligence into clear, useful and scalable digital solutions.\n\nMy experience in national and European R&D projects has allowed me to work in demanding technological environments, where precision, traceability and data-driven decision-making are essential. I combine software development, data analysis, automation and product thinking to create maintainable, well-structured solutions designed for real users.',
@@ -202,7 +194,6 @@ export const portfolio = {
       { value: 'Full-Stack', label: 'Web development' },
       { value: 'Automation', label: 'Efficient processes' },
       { value: 'Data & AI', label: 'Intelligent solutions' },
-      { value: 'Madrid', label: 'Spain' },
     ],
     specialties: [
       { number: '01', title: 'Full-stack web applications', description: 'I develop complete, responsive and product-oriented web solutions, connecting clear interfaces with business logic, data and APIs.', icon: 'WEB' },
@@ -228,12 +219,12 @@ export const portfolio = {
       { role: 'Contracted Researcher · Technical automation', organization: 'Institute of Ceramics and Glass — CSIC', project: '4AIRCRAFT', date: 'May 2024 — Aug 2024', description: 'Programming and integration of automated systems to optimize technical electrocatalyst spraying processes within a European project on sustainable technologies.\n\nSupport in results analysis, technical documentation and development of tools to organize data, generate reports and improve the reproducibility of experimental processes.' },
     ] as Experience[],
     formativeExperience: [
-      { role: 'Master’s Internship · Python, data and AI', organization: 'Institute of Ceramics and Glass — ICV-CSIC', location: 'Madrid, Spain', date: 'Feb 2025 — Mar 2025', description: 'Development of Python tools for automatic analysis of electrochemical data from solid-state batteries. Processing, cleaning, visualization and statistical analysis of EIS and cyclic voltammetry data with Pandas, Matplotlib and Plotly.\n\nThis work served as a foundation for analysis methodologies and predictive models applied to energy storage systems.' },
-      { role: 'Undergraduate Internship · Software and critical systems', organization: 'TechMedic', location: 'Pasto, Colombia', date: 'Aug 2022 — Oct 2022', description: 'Development and implementation of software and hardware for nurse call and code blue alert systems in a hospital environment. Support in testing, validation and assurance of critical systems oriented to medical response.' },
+      { role: 'Master’s Internship · Python, data and AI', organization: 'Institute of Ceramics and Glass — ICV-CSIC', date: 'Feb 2025 — Mar 2025', description: 'Development of Python tools for automatic analysis of electrochemical data from solid-state batteries. Processing, cleaning, visualization and statistical analysis of EIS and cyclic voltammetry data with Pandas, Matplotlib and Plotly.\n\nThis work served as a foundation for analysis methodologies and predictive models applied to energy storage systems.' },
+      { role: 'Undergraduate Internship · Software and critical systems', organization: 'TechMedic', date: 'Aug 2022 — Oct 2022', description: 'Development and implementation of software and hardware for nurse call and code blue alert systems in a hospital environment. Support in testing, validation and assurance of critical systems oriented to medical response.' },
     ] as Experience[],
     education: [
-      { degree: 'Master’s Degree in Intelligent Interactive Systems', institution: 'Autonomous University of Madrid', location: 'Madrid, Spain', date: 'October 2025', description: 'Data analysis, artificial intelligence, machine learning and development of intelligent interactive systems.' },
-      { degree: 'Mechatronics Engineering', institution: 'Universidad Mariana', location: 'Pasto, Colombia', date: 'August 2023', description: 'Automation, programming, electronics and development of multidisciplinary technological systems.' },
+      { degree: 'Master’s Degree in Intelligent Interactive Systems', institution: 'Autonomous University of Madrid', date: 'October 2025', description: 'Data analysis, artificial intelligence, machine learning and development of intelligent interactive systems.' },
+      { degree: 'Mechatronics Engineering', institution: 'Universidad Mariana', date: 'August 2023', description: 'Automation, programming, electronics and development of multidisciplinary technological systems.' },
     ],
     publications: [
       { title: 'Real-Time, Interpretable Diagnostics for Solid-State Batteries via Machine Learning on In Situ Impedance Spectra', authors: 'Z. Warren, F. Cuasquer, R. Sanchez, P.A. Apellániz, A. Almodóvar, J. Parras, N.C. Rosero-Navarro', venue: 'Battery Energy, Volume 5, Issue 3', date: 'May 2026', type: 'Scientific article' },
@@ -245,8 +236,8 @@ export const portfolio = {
       venue: 'Vaultinum Trust Services',
       date: 'November 2025',
       type: 'Software registration',
-      description: 'Pipeline to transform experimental battery data into prepared datasets for analysis, visualization and artificial intelligence model training.\n\nIt integrates data processing, workflow automation and preparation of predictive models.',
-      role: 'Co-author and developer of the pipeline and model training workflow.',
+      description: 'Python pipeline that processes experimental battery data to train machine learning models.',
+      role: 'Co-author · Pipeline development and model training.',
       registrationLabel: 'Registration',
       authorsLabel: 'Authors',
       tags: ['Python', 'Data Pipeline', 'Machine Learning', 'Automation', 'Battery Analysis'],

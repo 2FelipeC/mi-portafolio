@@ -3,18 +3,26 @@ import { portfolio, type Lang } from '../data/portfolio';
 interface Props { lang?: Lang; }
 const lang = Astro.props.lang ?? 'es';
 const { person, ui } = portfolio[lang];
-const emailHref = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(person.email)}&su=${encodeURIComponent(ui.emailSubject)}`;
+const gmailHref = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(person.email) + '&su=' + encodeURIComponent(ui.emailSubject);
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
-<section id="contacto" class="section relative overflow-hidden">
-  <div class="absolute inset-x-0 bottom-0 mx-auto h-72 max-w-3xl rounded-full bg-electric/8 blur-[120px]"></div>
-  <div class="shell relative text-center">
-    <p class="eyebrow">{ui.sections.contactEyebrow}</p><h2 class="mx-auto mt-5 max-w-3xl text-[clamp(2.4rem,7vw,5.2rem)] font-semibold leading-[1.02] tracking-[-.055em]">{ui.sections.contactTitle} <span class="gradient-text">{ui.sections.contactHighlight}</span></h2>
-    <p class="mx-auto mt-6 max-w-xl text-base leading-8 text-slate-400">{ui.sections.contactText}</p>
-    <a href={emailHref} target="_blank" rel="noreferrer" class="focus-ring mt-9 inline-flex rounded-full bg-electric px-7 py-3.5 text-sm font-bold text-ink transition hover:bg-white">{person.email} ↗</a>
-    <div class="mt-10 flex justify-center gap-6 text-sm">
-      <a class="focus-ring rounded text-slate-400 transition hover:text-white" href={person.github} target="_blank" rel="noreferrer">GitHub ↗</a>
-      <a class="focus-ring rounded text-slate-400 transition hover:text-white" href={person.linkedin} target="_blank" rel="noreferrer">{ui.linkedInLabel} ↗</a>
+<section id="contacto" class="contact-section">
+  <div class="shell">
+    <div class="contact-top">
+      <p class="eyebrow">{lang === 'es' ? 'CONTACTO' : 'CONTACT'}</p>
+      <span class="mono">{lang === 'es' ? 'WEB · AUTOMATIZACIÓN · DATOS E IA' : 'WEB · AUTOMATION · DATA & AI'}</span>
     </div>
-    <p class="mt-8 font-mono text-[.68rem] uppercase tracking-widest text-slate-600">{person.location}</p>
+
+    <div class="contact-layout">
+      <h2>{lang === 'es' ? 'Hablemos' : 'Let’s talk'}<em>{lang === 'es' ? 'de tu idea.' : 'about your idea.'}</em></h2>
+      <div class="contact-emblem" aria-hidden="true">
+        <img src={basePath + '/LOGO2FC3.webp'} alt="" />
+      </div>
+    </div>
+
+    <div class="contact-action">
+      <p>{ui.sections.contactText}</p>
+      <a class="button contact-cta" href={gmailHref} target="_blank" rel="noopener noreferrer">{lang === 'es' ? 'Escríbeme' : 'Email me'}</a>
+    </div>
   </div>
 </section>

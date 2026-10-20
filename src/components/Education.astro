@@ -2,14 +2,23 @@
 import { portfolio, type Lang } from '../data/portfolio';
 interface Props { lang?: Lang; }
 const lang = Astro.props.lang ?? 'es';
-const content = portfolio[lang];
-const { ui } = content;
+const { education } = portfolio[lang];
 ---
-<section id="formacion" class="section">
-  <div class="shell">
-    <div class="grid gap-12 lg:grid-cols-[.72fr_1.28fr] lg:gap-20">
-      <div><p class="eyebrow">{ui.sections.educationEyebrow}</p><h2 class="section-title">{ui.sections.educationTitle}</h2></div>
-      <div class="space-y-4">{content.education.map((item) => <article class="glass rounded-2xl p-6 sm:p-8"><div class="flex flex-col justify-between gap-3 sm:flex-row"><span class="font-mono text-xs text-electric">{item.date}</span><span class="font-mono text-[.65rem] uppercase tracking-wider text-slate-600">{item.location}</span></div><h3 class="mt-6 text-xl font-semibold">{item.degree}</h3><p class="mt-2 text-sm text-slate-300">{item.institution}</p><p class="mt-4 text-sm leading-7 text-slate-500">{item.description}</p></article>)}</div>
-    </div>
+<section id="formacion" class="section shell education-section">
+  <div>
+    <p class="eyebrow">{lang === 'es' ? 'FORMACIÓN' : 'EDUCATION'}</p>
+    <h2 class="display-title">{lang === 'es' ? 'Aprender.' : 'Learn.'}<br /><em>{lang === 'es' ? 'Construir.' : 'Build.'}</em><br />{lang === 'es' ? 'Repetir.' : 'Repeat.'}</h2>
+  </div>
+  <div class="education-list">
+    {education.map(item => <article>
+      <div class="project-meta"><span>{item.date}</span></div>
+      <h3>{item.degree}</h3>
+      <p class="institution">{item.institution}</p>
+      <p class="education-description-desktop">{item.description}</p>
+      <details class="mobile-disclosure education-disclosure">
+        <summary>{lang === 'es' ? 'Ver detalles' : 'View details'}<span aria-hidden="true">+</span></summary>
+        <p>{item.description}</p>
+      </details>
+    </article>)}
   </div>
 </section>

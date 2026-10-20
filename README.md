@@ -64,6 +64,12 @@ Para actualizar el contenido del CV, edita `src/data/portfolio.ts` y vuelve a ej
 
 La información profesional, las traducciones y los datos usados para generar el CV están centralizados en `src/data/portfolio.ts`. Los componentes visuales están en `src/components/`.
 
+## Diseño local
+
+Diseño editorial en marfil, carbón y rojo, con tema claro/oscuro, navegación móvil y versiones ES/EN. Los proyectos aparecen antes del perfil y la trayectoria. Las contribuciones, el stack y la experiencia formativa pueden desplegarse para consultar sus detalles.
+
+El retrato y las capturas de proyectos son opcionales: mientras falten, se muestran espacios reservados con los logotipos existentes. Consulta `public/images/README.md` para los nombres, formatos y tamaños recomendados. Después de añadir imágenes, reinicia el servidor local.
+
 ## Próximos pasos
 
 - Sustituir los enlaces temporales de LinkedIn, demos y repositorios de proyectos.

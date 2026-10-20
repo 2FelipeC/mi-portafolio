@@ -1,0 +1,11 @@
+---
+import { existsSync } from 'node:fs';
+import path from 'node:path';
+interface Props { name: string; alt: string; class?: string; eager?: boolean; }
+const { name, alt, class: className = '', eager = false } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const file = ['webp', 'png', 'jpg', 'jpeg'].map(ext => `images/${name}.${ext}`).find(file => existsSync(path.resolve('public', file)));
+---
+<div class:list={['media-slot', className, { 'has-image': Boolean(file) }]}>
+  {file ? <img class="slot-image" src={`${base}/${file}`} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async" /> : <slot />}
+</div>

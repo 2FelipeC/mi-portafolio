@@ -12,19 +12,8 @@ const alternateLang = lang === 'es' ? 'en' : 'es';
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script is:inline>
-      (() => {
-        try {
-          const theme = localStorage.getItem('theme');
-          if (theme === 'light' || theme === 'dark') {
-            document.documentElement.dataset.theme = theme;
-          }
-        } catch {}
-      })();
-    </script>
     <meta name="description" content={description} />
-    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#070506" />
-    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff7f5" />
+    <meta name="theme-color" content="#090808" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />

@@ -15,8 +15,8 @@ import { portfolio } from '../../data/portfolio';
 const lang = 'en';
 const content = portfolio[lang];
 ---
-<Layout lang={lang} title={content.seo.title} description={content.seo.description} alternateHref="https://felipe4992.github.io/mi-portafolio/">
+<Layout lang={lang} title={content.seo.title} description={content.seo.description} alternateHref={new URL('mi-portafolio/', Astro.site).href}>
   <Header lang={lang} />
-  <main><Hero lang={lang} /><About lang={lang} /><Skills lang={lang} /><Projects lang={lang} /><Experience lang={lang} /><Education lang={lang} /><Publications lang={lang} /><Contact lang={lang} /></main>
+  <main id="main"><Hero lang={lang} /><Projects lang={lang} /><About lang={lang} /><Skills lang={lang} /><Experience lang={lang} /><Education lang={lang} /><Publications lang={lang} /><Contact lang={lang} /></main>
   <Footer lang={lang} />
 </Layout>
